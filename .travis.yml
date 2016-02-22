@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - hhvm
+  - hhvm-nightly
+
+before_install:
+  - travis_retry composer self-update
+
+install:
+  - travis_retry composer install --no-interaction --prefer-source --dev
+
+script:
+  - hhvm bin/phpunit --verbose
+
+matrix:
+  allow_failures:
+    - php: hhvm-nightly
